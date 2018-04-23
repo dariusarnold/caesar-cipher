@@ -1,5 +1,9 @@
 import string
-from IPython.display import clear_output #  clear ipython console from earlier all output
+try:
+    from IPython.display import clear_output  # clears ipython console
+except ImportError:
+    # not running in IPython notebook, no clear_output function available
+    def clear_output(): pass
 
 class Coder(object):
     """
