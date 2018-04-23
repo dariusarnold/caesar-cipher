@@ -33,6 +33,11 @@ class Coder(object):
         print("Output: " + self.result)
 
     def get_mode(self):
+        """
+        Get user input and set mode to decoding or encoding
+        :return: Coding mode string: (d)ecoding or (e)ncoding
+        :rtype: str
+        """
         mode = input("Enter d to decode, e to encode\n").lower()
         if mode not in ('d', 'e'):
             clear_output()
@@ -45,6 +50,11 @@ class Coder(object):
         return string
 
     def get_user_cipher(self):
+		"""
+		Get cipher (number to shift by), limited between 0...26, 
+		allowing only numeric input.
+		:rtype: int
+		"""
         cipher = input("Please input cipher (default: 13): ")
         if cipher == "": return 13
         if cipher.isdigit():
