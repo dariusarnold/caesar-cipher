@@ -4,6 +4,9 @@ try:
 except ImportError:
     # not running in IPython notebook, no clear_output function available
     def clear_output(): pass
+try:
+    input = raw_input
+except NameError: pass
 
 class Coder(object):
     """
