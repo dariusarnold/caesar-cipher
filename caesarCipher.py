@@ -12,19 +12,19 @@ except NameError: pass
 
 class Coder(object):
     """
-    Implements a caesar cipher encoder and decoder. Use Coder.use() to run class.
+    Implements a caesar cipher encoder and decoder. Use Coder.use() to run class
     """
 
-    lowerCase = list(string.ascii_lowercase)
-    upperCase = list(string.ascii_uppercase)
-    case = lowerCase + upperCase
+    lower_case = list(string.ascii_lowercase)
+    upper_case = list(string.ascii_uppercase)
+    case = lower_case + upper_case
 
     def use(self):
-        self.mode = self.getMode()
+        self.mode = self.get_mode()
         clear_output()
-        self.input_string = self.getUserInputString()
+        self.input_string = self.get_user_input_string()
         clear_output()
-        self.input_cipher = self.getUserCipher()
+        self.input_cipher = self.get_user_cipher()
         clear_output()
         if self.mode == 'd':
             self.result = self.decode(self.input_string, self.input_cipher)
@@ -32,20 +32,19 @@ class Coder(object):
             self.result = self.encode(self.input_string, self.input_cipher)
         print("Output: " + self.result)
 
-    def getMode(self):
+    def get_mode(self):
         mode = input("Enter d to decode, e to encode\n").lower()
-        if mode not in ['d', 'e']:
+        if mode not in ('d', 'e'):
             clear_output()
             print("Invalid input, choose Encoding (e) or decoding (d)")
-            return self.getMode()
+            return self.get_mode()
         return mode
 
-    def getUserInputString(self):
+    def get_user_input_string(self):
         string = input("Please input a string: ")
         return string
 
-    def getUserCipher(self):
-        #print(, end="")
+    def get_user_cipher(self):
         cipher = input("Please input cipher (default: 13): ")
         if cipher == "": return 13
         if cipher.isdigit():
@@ -57,7 +56,7 @@ class Coder(object):
         else:
             print("Only numbers allowed!")
             if cipher.isalpha():
-                return int(self.getUserCipher())
+                return int(self.get_user_cipher())
             else:
                 print("Stripping letters out of input")
                 cipher = "".join([symbol for symbol in cipher if symbol.isdigit()])
@@ -75,17 +74,17 @@ class Coder(object):
                 result = result + symbol
             else:
                 if symbol.isupper():
-                    index = self.upperCase.index(symbol)
+                    index = self.upper_case.index(symbol)
                     index += cipher
                     if index > 25:
                         index -= 26
-                    result = result + self.upperCase[index]
+                    result = result + self.upper_case[index]
                 else:
-                    index = self.lowerCase.index(symbol)
+                    index = self.lower_case.index(symbol)
                     index += cipher
                     if index > 25:
                         index -= 26
-                    result = result + self.lowerCase[index]
+                    result = result + self.lower_case[index]
         return result
 
     def decode(self, string, cipher):
