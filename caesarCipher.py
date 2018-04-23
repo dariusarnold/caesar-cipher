@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import string
 try:
     from IPython.display import clear_output  # clears ipython console
